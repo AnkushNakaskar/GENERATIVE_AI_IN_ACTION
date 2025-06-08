@@ -6,6 +6,7 @@
 
 import os
 from openai import OpenAI
+import certifi
 
 
 
@@ -28,8 +29,12 @@ def print_hi(name):
     ], model=MODEL_NAME)
 
 
+def print_cert():
+    print(certifi.where())
+
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    print_cert()
+    print_hi("Ankush")
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
