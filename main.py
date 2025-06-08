@@ -15,9 +15,8 @@ def get_token():
         print(f"An error occurred: {e}")
     return content;
 
-def print_hi(name):
+def completion(content):
 
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
 
     STAGE_URL="http://godric.nixy.stg-drove.phonepe.nb6/v1"
     PROD_URL="https://godric.drove.fra.phonepe.mhz/v1"
@@ -25,13 +24,20 @@ def print_hi(name):
     MODEL_NAME = "global:LLM_GLOBAL_LLAMA_3_1_8B_STG" # LLAMA 3.1 deployment on stage
     auth_token_val = str(get_token()).strip();
     client = OpenAI(base_url=STAGE_URL, api_key=str(auth_token_val)) # Do not add O-Bearer/Bearer in the api_key
-    client.chat.completions.create(
+    response = client.chat.completions.create(
         messages=[
             {
                 "role": "user",
-                "content": "Say this is a test",
+                "content": str(content),
             }
     ], model=MODEL_NAME)
+    print(response)
+    print(">>>")
+    return response.choices[0].message.content
+
+
+
+
 
 
 def print_cert():
@@ -40,6 +46,5 @@ def print_cert():
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     print_cert()
-    print_hi("Ankush")
+    print(completion("Say this is a test"))
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
