@@ -3,6 +3,8 @@ import os
 from openai import OpenAI
 import certifi
 
+# When you want to avoid or favour certain words, you use logit_bias
+# Token are generated for words using tiktoken and values with -100 are added with excluded in call
 
 def get_token():
     try:
@@ -30,10 +32,25 @@ def completion(content):
                 "role": "user",
                 "content": str(content),
             }
-    ], model=MODEL_NAME,n=3)
-    print(response)
+    ], model=MODEL_NAME,temperature=0.8,
+    max_tokens=500,
+    logit_bias={
+      30026:-100,               #1
+      81:-100,                 #1
+      9330:-100,               #1
+      808:-100,                #1
+      42114:-100,              #1
+      1308:-100,               #1
+      3808:-100,               #1
+      502:-100,                #1
+      322:-100                 #1
+  }    )
+
+    # 'Purr Purrs Meow Purr purr purrs meow:[30026, 81, 9330,
+    # ↪3808, 42114, 9330, 81, 1308, 81, 1308, 3808, 502, 322]'
+    print(response.__dict__)
     print(">>>")
-    return response.choices[0].message.content
+    return response;
 
 
 
@@ -46,7 +63,7 @@ def print_cert():
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     print_cert()
-    print(completion("Say this is a test"))
+    # print(completion("Say this is a test"))
     while True:
         query = input("Please enter your name: ")
         print(completion(str(query)))

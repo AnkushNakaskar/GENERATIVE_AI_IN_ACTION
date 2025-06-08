@@ -30,10 +30,11 @@ def completion(content):
                 "role": "user",
                 "content": str(content),
             }
-    ], model=MODEL_NAME,n=3)
-    print(response)
+    ], model=MODEL_NAME,stream=True,temperature=0.8,
+    max_tokens=500,max_completion_tokens=100)
+    print(response.__dict__)
     print(">>>")
-    return response.choices[0].message.content
+    return response;
 
 
 
@@ -47,8 +48,8 @@ def print_cert():
 if __name__ == '__main__':
     print_cert()
     print(completion("Say this is a test"))
-    while True:
-        query = input("Please enter your name: ")
-        print(completion(str(query)))
+    # while True:
+    #     query = input("Please enter your name: ")
+    #     print(completion(str(query)))
 
 
