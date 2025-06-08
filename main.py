@@ -19,7 +19,7 @@ def print_hi(name):
 
     MODEL_NAME = "global:LLM_GLOBAL_LLAMA_3_1_8B_STG" # LLAMA 3.1 deployment on stage
 
-    client = OpenAI(base_url=STAGE_URL, api_key="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJpZGVudGl0eU1hbmFnZXIiLCJ2ZXJzaW9uIjoiNC4wIiwidGlkIjoiZWY2Mzc3OWEtMDJlMi00MzE0LWE3MTAtNWYzYzJkNzYwNmI3Iiwic2lkIjoiMDk5MWY5Y2YtOGJmMy00ZWYxLTlhNTItNTk5YzJiM2EzMGM2IiwiaWF0IjoxNzQ5MTEyMzQxLCJleHAiOjE3NDk3MTcxNDF9.nkjA2yTc0ZmNVkuwvswD2VJlwAg-goOm8uQ-PHT6khRDVcUS8bnRwrn5RKm3a6QOgU0a315ZL88PctGXuhlz3A") # Do not add O-Bearer/Bearer in the api_key
+    client = OpenAI(base_url=STAGE_URL, api_key="<Token>") # Do not add O-Bearer/Bearer in the api_key
     client.chat.completions.create(
         messages=[
             {
