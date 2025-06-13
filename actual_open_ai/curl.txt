@@ -1,0 +1,8 @@
+curl https://api.openai.com/v1/completions \
+  -H "Content-Type: application/json" \
+  -H "Authorization: " \
+  -d '{
+    "model": "gpt-4o-mini",
+    "stream": false,
+    "prompt":"This is test env, right ?"
+  }'
